@@ -1,0 +1,20 @@
+<?php
+/**
+ * OrderComment
+ *
+ * @package     Echron_OrderComment
+ * @var $block \Echron\OrderComment\Block\Order\Comment
+ */
+?>
+<?php if ($comment = $block->getOrderComment()) : ?>
+    <section class="admin__page-section um-ordercomment">
+        <div class="admin__page-section-title">
+            <span class="title"><?php /* @noEscape */
+                echo __('Order Comment') ?></span>
+        </div>
+        <div class="admin__page-section-content">
+            <?php /* @noEscape */
+            echo nl2br($block->escapeHtml($comment)); ?>
+        </div>
+    </section>
+<?php endif; ?>
