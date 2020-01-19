@@ -18,7 +18,7 @@
                        showInWebsite="1" showInStore="0">
                     <label>Show order comments in customer account?</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>If "Yes" the order comment will show on customer account, in "My Account -> My Orders -> View Order"</comment>
+                    <hint>If "Yes" the order comment will show on customer account, in "My Account -> My Orders -> View Order"</hint>
                 </field>
             </group>
         </section>

@@ -1,7 +1,9 @@
 <?php
-?>
-<?php
-/** @var \Echron\OrderComment\Block\Order\Comment $block */
+declare(strict_types=1);
+/**
+ * @var \Echron\OrderComment\Block\Order\Comment $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
 ?>
 <?php if ($block->isShowCommentInAccount()) : ?>
     <?php if ($comment = $block->getOrderComment()) : ?>

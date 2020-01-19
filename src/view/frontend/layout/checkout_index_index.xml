@@ -28,7 +28,12 @@
                                                                 <item name="before-place-order" xsi:type="array">
                                                                     <item name="children" xsi:type="array">
                                                                         <item name="comment" xsi:type="array">
-                                                                            <item name="component" xsi:type="string">Echron_OrderComment/js/view/checkout/order-comment-block</item>
+                                                                            <item name="component" xsi:type="string">
+                                                                                Echron_OrderComment/js/view/checkout/order-comment-block
+                                                                            </item>
+                                                                            <item name="sortOrder" xsi:type="string">
+                                                                                20
+                                                                            </item>
                                                                         </item>
                                                                     </item>
                                                                 </item>
