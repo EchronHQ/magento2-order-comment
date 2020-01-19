@@ -7,7 +7,16 @@
     "OSL-3.0",
     "AFL-3.0"
   ],
+  "keywords": [
+    "echron",
+    "magento",
+    "magento2",
+    "checkout",
+    "comment",
+    "comments"
+  ],
   "require": {
+    "php": ">=7.3",
     "magento/magento-composer-installer": "*"
   },
   "autoload": {
