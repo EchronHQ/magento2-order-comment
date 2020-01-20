@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Echron\OrderComment\Api;
 
 use Echron\OrderComment\Api\Data\OrderCommentInterface;

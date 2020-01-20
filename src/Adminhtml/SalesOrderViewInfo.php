@@ -1,8 +1,10 @@
 <?php
+declare(strict_types=1);
+
 namespace Echron\OrderComment\Plugin\Block\Adminhtml;
 
-use Magento\Sales\Block\Adminhtml\Order\View\Info as ViewInfo;
 use Echron\OrderComment\Model\Data\OrderComment;
+use Magento\Sales\Block\Adminhtml\Order\View\Info as ViewInfo;
 
 class SalesOrderViewInfo
 {
@@ -14,15 +16,16 @@ class SalesOrderViewInfo
      */
     public function afterToHtml(
         ViewInfo $subject,
-        $result
-    ) {
+                 $result
+    )
+    {
         $commentBlock = $subject->getLayout()
             ->getBlock('order_comments');
 
         if ($commentBlock !== false) {
             $commentBlock->setOrderComment($subject->getOrder()
                 ->getData(OrderComment::COMMENT_FIELD_NAME));
-            $result = $result . $commentBlock->toHtml();
+            $result .= $commentBlock->toHtml();
         }
 
         return $result;

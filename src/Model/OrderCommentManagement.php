@@ -1,12 +1,14 @@
 <?php
+declare(strict_types=1);
+
 namespace Echron\OrderComment\Model;
 
-use Magento\Framework\Exception\CouldNotSaveException;
-use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Quote\Api\CartRepositoryInterface;
 use Echron\OrderComment\Api\Data\OrderCommentInterface;
 use Echron\OrderComment\Api\OrderCommentManagementInterface;
 use Echron\OrderComment\Model\Data\OrderComment;
+use Magento\Framework\Exception\CouldNotSaveException;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Quote\Api\CartRepositoryInterface;
 
 class OrderCommentManagement implements OrderCommentManagementInterface
 {
@@ -15,7 +17,7 @@ class OrderCommentManagement implements OrderCommentManagementInterface
      *
      * @var \Magento\Quote\Api\CartRepositoryInterface
      */
-    protected $quoteRepository;
+    protected \Magento\Quote\Api\CartRepositoryInterface $quoteRepository;
 
     /**
      *
@@ -23,27 +25,26 @@ class OrderCommentManagement implements OrderCommentManagementInterface
      */
     public function __construct(
         CartRepositoryInterface $quoteRepository
-    ) {
+    )
+    {
         $this->quoteRepository = $quoteRepository;
     }
 
     /**
-     * @param int $cartId
-     * @param OrderCommentInterface $orderComment
-     * @return null|string
-     * @throws CouldNotSaveException
-     * @throws NoSuchEntityException
+     * @inheritDoc
+     *
      */
     public function saveOrderComment(
-        $cartId,
+        int                   $cartId,
         OrderCommentInterface $orderComment
-    ) {
+    ): string
+    {
         $quote = $this->quoteRepository->getActive($cartId);
 
         if (!$quote->getItemsCount()) {
             throw new NoSuchEntityException(
-                  __('Cart %1 doesn\'t contain products', $cartId)
-              );
+                __('Cart %1 doesn\'t contain products', $cartId)
+            );
         }
 
         $comment = $orderComment->getComment();
@@ -54,8 +55,8 @@ class OrderCommentManagement implements OrderCommentManagementInterface
             $this->quoteRepository->save($quote);
         } catch (\Exception $e) {
             throw new CouldNotSaveException(
-                   __('The order comment could not be saved')
-               );
+                __('The order comment could not be saved')
+            );
         }
 
         return $comment;

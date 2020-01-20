@@ -1,27 +1,29 @@
 <?php
+declare(strict_types=1);
+
 namespace Echron\OrderComment\Model\Data;
 
-use Magento\Framework\Api\AbstractSimpleObject;
 use Echron\OrderComment\Api\Data\OrderCommentInterface;
+use Magento\Framework\Api\AbstractSimpleObject;
 
 class OrderComment extends AbstractSimpleObject implements OrderCommentInterface
 {
-    const COMMENT_FIELD_NAME = 'echron_order_comment';
+    public const COMMENT_FIELD_NAME = 'echron_order_comment';
 
     /**
      * @return string|null
      */
-    public function getComment()
+    public function getComment(): ?string
     {
         return $this->_get(static::COMMENT_FIELD_NAME);
     }
 
     /**
      * @param string $comment
-     * @return $this
+     * @return void
      */
-    public function setComment($comment)
+    public function setComment(string $comment): void
     {
-        return $this->setData(static::COMMENT_FIELD_NAME, $comment);
+        $this->setData(static::COMMENT_FIELD_NAME, $comment);
     }
 }

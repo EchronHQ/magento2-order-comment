@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Echron\OrderComment\Api;
 
 use Echron\OrderComment\Api\Data\OrderCommentInterface;
@@ -13,10 +15,10 @@ interface OrderCommentManagementInterface
     /**
      * @param int $cartId
      * @param OrderCommentInterface $orderComment
-     * @return string
+     * @return null|string
      */
     public function saveOrderComment(
-        $cartId,
+        int                   $cartId,
         OrderCommentInterface $orderComment
-    );
+    ): string;
 }

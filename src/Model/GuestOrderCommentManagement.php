@@ -1,22 +1,24 @@
 <?php
+declare(strict_types=1);
+
 namespace Echron\OrderComment\Model;
 
-use Magento\Quote\Model\QuoteIdMaskFactory;
 use Echron\OrderComment\Api\Data\OrderCommentInterface;
 use Echron\OrderComment\Api\GuestOrderCommentManagementInterface;
 use Echron\OrderComment\Api\OrderCommentManagementInterface;
+use Magento\Quote\Model\QuoteIdMaskFactory;
 
 class GuestOrderCommentManagement implements GuestOrderCommentManagementInterface
 {
     /**
      * @var QuoteIdMaskFactory
      */
-    protected $quoteIdMaskFactory;
+    protected QuoteIdMaskFactory $quoteIdMaskFactory;
 
     /**
      * @var OrderCommentManagementInterface
      */
-    protected $orderCommentManagement;
+    protected QuoteIdMaskFactory $orderCommentManagement;
 
     /**
      * GuestOrderCommentManagement constructor.
@@ -24,9 +26,10 @@ class GuestOrderCommentManagement implements GuestOrderCommentManagementInterfac
      * @param OrderCommentManagementInterface $orderCommentManagement
      */
     public function __construct(
-        QuoteIdMaskFactory $quoteIdMaskFactory,
+        QuoteIdMaskFactory              $quoteIdMaskFactory,
         OrderCommentManagementInterface $orderCommentManagement
-    ) {
+    )
+    {
         $this->quoteIdMaskFactory = $quoteIdMaskFactory;
         $this->orderCommentManagement = $orderCommentManagement;
     }
@@ -37,7 +40,8 @@ class GuestOrderCommentManagement implements GuestOrderCommentManagementInterfac
     public function saveOrderComment(
         $cartId,
         OrderCommentInterface $orderComment
-    ) {
+    ): string
+    {
         $quoteIdMask = $this->quoteIdMaskFactory->create()
             ->load($cartId, 'masked_id');
 

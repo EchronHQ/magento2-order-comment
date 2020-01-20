@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Echron\OrderComment\Api\Data;
 
 /**
@@ -10,11 +12,11 @@ interface OrderCommentInterface
     /**
      * @return string|null
      */
-    public function getComment();
+    public function getComment(): ?string;
 
     /**
      * @param string $comment
-     * @return null
+     * @return void
      */
-    public function setComment($comment);
+    public function setComment(string $comment): void;
 }
