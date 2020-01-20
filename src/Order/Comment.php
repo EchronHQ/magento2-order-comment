@@ -26,15 +26,7 @@ class Comment extends Template
     /**
      * @var Registry
      */
-    protected Registry $coreRegistry = null;
-    /**
-     * @var true
-     */
-    private bool $_isScopePrivate;
-    /**
-     * @var string
-     */
-    private string $_template;
+    protected Registry $coreRegistry;
 
     /**
      * @param Context $context
