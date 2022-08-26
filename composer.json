@@ -15,7 +15,7 @@
     "comments"
   ],
   "require": {
-    "php": ">=7.3",
+    "php": ">=8",
     "magento/magento-composer-installer": "*"
   },
   "autoload": {
