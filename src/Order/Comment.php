@@ -8,6 +8,7 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
+use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Model\Order;
 use Magento\Store\Model\ScopeInterface;
 
@@ -53,9 +54,9 @@ class Comment extends Template
      *
      * @return bool
      */
-    public function isShowCommentInAccount()
+    public function isShowCommentInAccount(): bool
     {
-        return $this->scopeConfig->getValue(
+        return (bool)$this->scopeConfig->getValue(
             self::XML_PATH_GENERAL_IS_SHOW_IN_MYACCOUNT,
             ScopeInterface::SCOPE_STORE
         );
@@ -64,9 +65,9 @@ class Comment extends Template
     /**
      * Get Order
      *
-     * @return array|null
+     * @return OrderInterface|null
      */
-    public function getOrder()
+    public function getOrder(): OrderInterface|null
     {
         return $this->coreRegistry->registry('current_order');
     }
@@ -76,9 +77,13 @@ class Comment extends Template
      *
      * @return string
      */
-    public function getOrderComment()
+    public function getOrderComment(): string
     {
-        return trim($this->getOrder()->getData(OrderComment::COMMENT_FIELD_NAME));
+        $order = $this->getOrder();
+        if ($order) {
+            return trim($order->getData(OrderComment::COMMENT_FIELD_NAME));
+        }
+        return '';
     }
 
     /**
@@ -86,7 +91,7 @@ class Comment extends Template
      *
      * @return string
      */
-    public function getOrderCommentHtml()
+    public function getOrderCommentHtml(): string
     {
         return nl2br($this->escapeHtml($this->getOrderComment()));
     }
@@ -96,7 +101,7 @@ class Comment extends Template
      *
      * @return bool
      */
-    public function hasOrderComment()
+    public function hasOrderComment(): bool
     {
         return strlen($this->getOrderComment()) > 0;
     }

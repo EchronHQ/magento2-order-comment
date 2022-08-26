@@ -13,7 +13,7 @@ class OrderComment extends AbstractSimpleObject implements OrderCommentInterface
     /**
      * @return string|null
      */
-    public function getComment(): ?string
+    public function getComment(): string|null
     {
         return $this->_get(static::COMMENT_FIELD_NAME);
     }
