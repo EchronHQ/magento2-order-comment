@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <order_comment>
+            <general>
+                <is_show_in_myaccount>1</is_show_in_myaccount>
+                <field_name>Order Comment</field_name>
+                <line_count>10</line_count>
+            </general>
+        </order_comment>
+    </default>
+</config>

@@ -18,7 +18,8 @@ class Comment extends Template
      *  Config Path
      */
     public const XML_PATH_GENERAL_IS_SHOW_IN_MYACCOUNT = 'order_comment/general/is_show_in_myaccount';
-
+    public const XML_PATH_GENERAL_FIELD_NAME = 'order_comment/general/field_name';
+    public const XML_PATH_GENERAL_LINE_COUNT = 'order_comment/general/line_count';
     /**
      * @var ScopeConfigInterface
      */
@@ -58,6 +59,32 @@ class Comment extends Template
     {
         return (bool)$this->scopeConfig->getValue(
             self::XML_PATH_GENERAL_IS_SHOW_IN_MYACCOUNT,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    /**
+     * Get comment field name (default 'Order comment')
+     *
+     * @return string
+     */
+    public function getFieldName(): string
+    {
+        return $this->scopeConfig->getValue(
+            self::XML_PATH_GENERAL_FIELD_NAME,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    /**
+     * Get line count
+     *
+     * @return int
+     */
+    public function getLineCount(): int
+    {
+        return (int)$this->scopeConfig->getValue(
+            self::XML_PATH_GENERAL_LINE_COUNT,
             ScopeInterface::SCOPE_STORE
         );
     }
