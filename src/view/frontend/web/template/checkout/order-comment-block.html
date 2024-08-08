@@ -2,12 +2,37 @@
     <form class="form order-comment-form">
         <div>
             <div class="field">
-                <label class="label">
-                    <span data-bind="i18n: 'Enter comment'"></span>
-                </label>
+                <label class="label" for="order-comment" data-bind="text: fieldLabel"></label>
                 <div class="control">
-                        <textarea class="input-text order-comment" name="comment-code" rows="10"
-                                  data-bind="attr:{placeholder: $t('Enter your comment...')} "></textarea>
+                    <!-- ko if: isSingleLine -->
+                    <input
+                            type="text"
+                            id="order-comment"
+                            class="input-text"
+                            name="order-comment"
+                            data-bind="
+                                attr: {
+                                    maxlength: maxLength,
+                                    placeholder: fieldPlaceholder
+                                }
+                            "/>
+                    <!-- /ko -->
+
+                    <!-- ko ifnot: isSingleLine -->
+                    <textarea
+                            id="order-comment"
+                            class="input-text order-comment"
+                            name="order-comment"
+                            data-bind="
+                                    attr: {
+                                        rows: lineCount,
+                                        maxlength: maxLength,
+                                        placeholder: fieldPlaceholder
+                                    }
+                                ">
+
+                        </textarea>
+                    <!-- /ko -->
                 </div>
             </div>
         </div>

@@ -4,10 +4,15 @@
     <default>
         <order_comment>
             <general>
-                <is_show_in_myaccount>1</is_show_in_myaccount>
-                <field_name>Order Comment</field_name>
-                <line_count>10</line_count>
+                <show_in_myaccount>1</show_in_myaccount>
+
             </general>
+            <field>
+                <label>Order Comment</label>
+                <placeholder>Enter your comment ...</placeholder>
+                <line_count>10</line_count>
+                <max_length></max_length>
+            </field>
         </order_comment>
     </default>
 </config>
