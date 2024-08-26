@@ -7,15 +7,15 @@ declare(strict_types=1);
 ?>
 <?php if ($block->isShowCommentInAccount()) : ?>
     <?php if ($comment = $block->getOrderComment()) : ?>
-    <div class="block block-order-comment um-ordercomment-block">
-        <div class="block-content">
-            <div class="block-title">
-                <strong><?php /* @escapeNotVerified */ echo __('Order Comment') ?></strong>
-            </div>
-            <div class="box-content">
-                <?php echo $block->getOrderCommentHtml();?>
+        <div class="block block-order-comment um-ordercomment-block">
+            <div class="block-content">
+                <div class="block-title">
+                    <strong><?= $escaper->escapeHtml(__($block->getFieldLabel())) ?></strong>
+                </div>
+                <div class="box-content">
+                    <?= $block->getOrderCommentHtml() ?>
+                </div>
             </div>
         </div>
-    </div>
     <?php endif; ?>
 <?php endif; ?>

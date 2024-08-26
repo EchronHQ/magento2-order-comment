@@ -14,11 +14,40 @@
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
                    showInStore="0">
                 <label>General</label>
-                <field id="is_show_in_myaccount" translate="label" type="select" sortOrder="10" showInDefault="1"
+                <field id="show_in_myaccount" translate="label" type="select" sortOrder="30" showInDefault="1"
                        showInWebsite="1" showInStore="0">
                     <label>Show order comments in customer account?</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <hint>If "Yes" the order comment will show on customer account, in "My Account -> My Orders -> ViewOrder"</hint>
+                    <comment>If "Yes" the order comment will show on customer account, in "My Account -> My Orders ->
+                        ViewOrder"
+                    </comment>
+                </field>
+            </group>
+            <group id="field" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1"
+                   showInStore="0">
+                <label>Field</label>
+
+                <field id="label" translate="label comment" type="text" sortOrder="10" showInDefault="1"
+                       canRestore="1">
+                    <label>Field label</label>
+                    <hint>Label of the field when shown to the customer</hint>
+                </field>
+                <field id="placeholder" translate="label comment" type="text" sortOrder="20" showInDefault="1"
+                       canRestore="1">
+                    <label>Field placeholder</label>
+                    <hint>Label of the field when shown to the customer</hint>
+                </field>
+                <field id="line_count" translate="label comment" type="text" sortOrder="30" showInDefault="1"
+                       canRestore="1">
+                    <label>Lines</label>
+                    <validate>validate-greater-than-zero validate-digits</validate>
+                    <hint>Set the amount of lines, 1 for single input, more than one for textarea</hint>
+                </field>
+                <field id="max_length" translate="label comment" type="text" sortOrder="40" showInDefault="1"
+                       canRestore="1">
+                    <label>Max length</label>
+                    <validate>validate-greater-than-zero validate-digits</validate>
+                    <hint>Set the maximum allowed characters (leave empty for no limit)</hint>
                 </field>
             </group>
         </section>

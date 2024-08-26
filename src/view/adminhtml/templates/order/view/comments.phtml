@@ -1,9 +1,11 @@
 <?php
+declare(strict_types=1);
 /**
  * OrderComment
  *
  * @package     Echron_OrderComment
  * @var $block \Echron\OrderComment\Block\Order\Comment
+ * @var \Magento\Framework\Escaper $escaper
  */
 ?>
 <?php if ($comment = $block->getOrderComment()) : ?>
@@ -14,7 +16,7 @@
         </div>
         <div class="admin__page-section-content">
             <?php /* @noEscape */
-            echo nl2br($block->escapeHtml($comment)); ?>
+            echo nl2br($escaper->escapeHtml($comment)); ?>
         </div>
     </section>
 <?php endif; ?>

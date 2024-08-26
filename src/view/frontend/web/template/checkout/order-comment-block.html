@@ -1,22 +1,40 @@
-<div class="payment-option _collapsible opc-payment-additional um-ordercomment comment last"
-     data-bind="mageInit: {'collapsible':{'openedState': '_active'}}">
-    <div class="payment-option-title field choice" data-role="title">
-        <span class="action action-toggle" role="heading" aria-level="2">
-            <!-- ko i18n: 'Leave a Comment'--><!-- /ko -->
-        </span>
-    </div>
-    <div class="payment-option-content" data-role="content">
-        <form class="form form-discount order-comment-form">
-            <div class="payment-option-inner">
-                <div class="field">
-                    <label class="label">
-                        <span data-bind="i18n: 'Enter comment'"></span>
-                    </label>
-                    <div class="control">
-                        <textarea class="input-text order-comment" name="comment-code" rows="10" data-bind="attr:{placeholder: $t('Enter your comment...')} " ></textarea>
-                    </div>
+<div class="order-comments-block comment last">
+    <form class="form order-comment-form">
+        <div>
+            <div class="field">
+                <label class="label" for="order-comment" data-bind="text: fieldLabel"></label>
+                <div class="control">
+                    <!-- ko if: isSingleLine -->
+                    <input
+                            type="text"
+                            id="order-comment"
+                            class="input-text"
+                            name="order-comment"
+                            data-bind="
+                                attr: {
+                                    maxlength: maxLength,
+                                    placeholder: fieldPlaceholder
+                                }
+                            "/>
+                    <!-- /ko -->
+
+                    <!-- ko ifnot: isSingleLine -->
+                    <textarea
+                            id="order-comment"
+                            class="input-text order-comment"
+                            name="order-comment"
+                            data-bind="
+                                    attr: {
+                                        rows: lineCount,
+                                        maxlength: maxLength,
+                                        placeholder: fieldPlaceholder
+                                    }
+                                ">
+
+                        </textarea>
+                    <!-- /ko -->
                 </div>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
 </div>

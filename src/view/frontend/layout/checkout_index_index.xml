@@ -19,22 +19,23 @@
                                                         <item name="additional-payment-validators" xsi:type="array">
                                                             <item name="children" xsi:type="array">
                                                                 <item name="order-comment-validator" xsi:type="array">
-                                                                    <item name="component" xsi:type="string">Echron_OrderComment/js/view/checkout/order-comment-validator</item>
+                                                                    <item name="component" xsi:type="string">
+                                                                        Echron_OrderComment/js/view/checkout/order-comment-validator
+                                                                    </item>
                                                                 </item>
                                                             </item>
                                                         </item>
-                                                        <item name="payments-list" xsi:type="array">
+                                                        <item name="afterMethods" xsi:type="array">
                                                             <item name="children" xsi:type="array">
-                                                                <item name="before-place-order" xsi:type="array">
-                                                                    <item name="children" xsi:type="array">
-                                                                        <item name="comment" xsi:type="array">
-                                                                            <item name="component" xsi:type="string">
-                                                                                Echron_OrderComment/js/view/checkout/order-comment-block
-                                                                            </item>
-                                                                            <item name="sortOrder" xsi:type="string">
-                                                                                20
-                                                                            </item>
-                                                                        </item>
+                                                                <item name="comment" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">
+                                                                        Echron_OrderComment/js/view/checkout/order-comment-block
+                                                                    </item>
+                                                                    <item name="sortOrder" xsi:type="string">
+                                                                        20
+                                                                    </item>
+                                                                    <item name="displayArea" xsi:type="string">
+                                                                        afterMethods
                                                                     </item>
                                                                 </item>
                                                             </item>

@@ -12,7 +12,7 @@ interface OrderCommentInterface
     /**
      * @return string|null
      */
-    public function getComment(): ?string;
+    public function getComment(): string|null;
 
     /**
      * @param string $comment
