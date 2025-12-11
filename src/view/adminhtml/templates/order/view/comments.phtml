@@ -11,12 +11,10 @@ declare(strict_types=1);
 <?php if ($comment = $block->getOrderComment()) : ?>
     <section class="admin__page-section um-ordercomment">
         <div class="admin__page-section-title">
-            <span class="title"><?php /* @noEscape */
-                echo __('Order Comment') ?></span>
+            <span class="title"><?= $escaper->escapeHtml(__('Order Comment')) ?></span>
         </div>
         <div class="admin__page-section-content">
-            <?php /* @noEscape */
-            echo nl2br($escaper->escapeHtml($comment)); ?>
+            <?= nl2br($escaper->escapeHtml($comment)) ?>
         </div>
     </section>
 <?php endif; ?>
