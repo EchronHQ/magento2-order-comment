@@ -1,21 +1,20 @@
 <?php
 declare(strict_types=1);
 /**
- * @var \Echron\OrderComment\Block\Order\Comment $block
+ * OrderComment
+ *
+ * @package     Echron_OrderComment
+ * @var $block \Echron\OrderComment\Block\Order\Comment
  * @var \Magento\Framework\Escaper $escaper
  */
 ?>
-<?php if ($block->isShowCommentInAccount()) : ?>
-    <?php if ($comment = $block->getOrderComment()) : ?>
-        <div class="block block-order-comment um-ordercomment-block">
-            <div class="block-content">
-                <div class="block-title">
-                    <strong><?= $escaper->escapeHtml(__($block->getFieldLabel())) ?></strong>
-                </div>
-                <div class="box-content">
-                    <?= $block->getOrderCommentHtml() ?>
-                </div>
-            </div>
+<?php if ($comment = $block->getOrderComment()) : ?>
+    <section class="admin__page-section um-ordercomment">
+        <div class="admin__page-section-title">
+            <span class="title"><?= $escaper->escapeHtml(__('Order Comment')) ?></span>
         </div>
-    <?php endif; ?>
+        <div class="admin__page-section-content">
+            <?= nl2br($escaper->escapeHtml($comment)) ?>
+        </div>
+    </section>
 <?php endif; ?>
