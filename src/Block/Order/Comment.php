@@ -30,7 +30,7 @@ class Comment extends Template
     )
     {
         parent::__construct($context, $data);
-
+        
         $this->coreRegistry = $registry;
         $this->dataHelper = $dataHelper;
         $this->_isScopePrivate = true;
