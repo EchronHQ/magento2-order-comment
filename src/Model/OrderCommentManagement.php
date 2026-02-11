@@ -50,7 +50,7 @@ class OrderCommentManagement implements OrderCommentManagementInterface
         $comment = $orderComment->getComment();
 
         try {
-            $quote->setData(OrderComment::COMMENT_FIELD_NAME, strip_tags($comment));
+            $quote->setData(OrderComment::COMMENT_FIELD_NAME, \strip_tags($comment));
 
             $this->quoteRepository->save($quote);
         } catch (\Exception $e) {

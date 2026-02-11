@@ -30,7 +30,7 @@ class Comment extends Template
     )
     {
         parent::__construct($context, $data);
-        
+
         $this->coreRegistry = $registry;
         $this->dataHelper = $dataHelper;
         $this->_isScopePrivate = true;
@@ -76,10 +76,14 @@ class Comment extends Template
     public function getOrderComment(): string
     {
         $order = $this->getOrder();
-        if ($order) {
-            return trim($order->getData(OrderComment::COMMENT_FIELD_NAME));
+        if (!$order) {
+            return '';
         }
-        return '';
+        $comment = $order->getData(OrderComment::COMMENT_FIELD_NAME);
+        if ($comment === null) {
+            return '';
+        }
+        return \trim($comment);
     }
 
     /**
@@ -89,7 +93,7 @@ class Comment extends Template
      */
     public function getOrderCommentHtml(): string
     {
-        return nl2br($this->escapeHtml($this->getOrderComment()));
+        return \nl2br($this->escapeHtml($this->getOrderComment()));
     }
 
     /**
@@ -99,6 +103,6 @@ class Comment extends Template
      */
     public function hasOrderComment(): bool
     {
-        return strlen($this->getOrderComment()) > 0;
+        return $this->getOrderComment() !== '';
     }
 }
