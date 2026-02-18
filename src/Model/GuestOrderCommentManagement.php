@@ -10,15 +10,6 @@ use Magento\Quote\Model\QuoteIdMaskFactory;
 
 class GuestOrderCommentManagement implements GuestOrderCommentManagementInterface
 {
-    /**
-     * @var QuoteIdMaskFactory
-     */
-    protected QuoteIdMaskFactory $quoteIdMaskFactory;
-
-    /**
-     * @var OrderCommentManagementInterface
-     */
-    protected QuoteIdMaskFactory $orderCommentManagement;
 
     /**
      * GuestOrderCommentManagement constructor.
@@ -26,21 +17,19 @@ class GuestOrderCommentManagement implements GuestOrderCommentManagementInterfac
      * @param OrderCommentManagementInterface $orderCommentManagement
      */
     public function __construct(
-        QuoteIdMaskFactory              $quoteIdMaskFactory,
-        OrderCommentManagementInterface $orderCommentManagement
+        private QuoteIdMaskFactory              $quoteIdMaskFactory,
+        private OrderCommentManagementInterface $orderCommentManagement
     )
     {
-        $this->quoteIdMaskFactory = $quoteIdMaskFactory;
-        $this->orderCommentManagement = $orderCommentManagement;
     }
 
     /**
      * {@inheritDoc}
      */
     public function saveOrderComment(
-        $cartId,
+        string                $cartId,
         OrderCommentInterface $orderComment
-    ): string
+    ): string|null
     {
         $quoteIdMask = $this->quoteIdMaskFactory->create()
             ->load($cartId, 'masked_id');

@@ -3,28 +3,27 @@ declare(strict_types=1);
 
 namespace Echron\OrderComment\Model;
 
+use Echron\OrderComment\Helper\Data;
 use Magento\Checkout\Model\ConfigProviderInterface;
 
 class CheckoutConfigProvider implements ConfigProviderInterface
 {
 
-    private \Echron\OrderComment\Helper\Data $dataHelper;
-
     public function __construct(
-        \Echron\OrderComment\Helper\Data $dataHelper,
+        private Data $dataHelper,
     )
     {
-        $this->dataHelper = $dataHelper;
+
     }
 
-    public function getConfig()
+    public function getConfig(): array
     {
         $configArray = [];
         $configArray['orderComment'] = [
             'fieldLabel' => $this->dataHelper->getFieldLabel(),
             'lineCount' => $this->dataHelper->getLineCount(),
             'maxLength' => $this->dataHelper->getMaxLength(),
-            'placeholder' => $this->dataHelper->getFieldPlaceholder(),
+            'fieldPlaceholder' => $this->dataHelper->getFieldPlaceholder(),
         ];
         return $configArray;
     }

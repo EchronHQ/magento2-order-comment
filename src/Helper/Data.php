@@ -18,9 +18,6 @@ class Data extends AbstractHelper
     public const XML_PATH_GENERAL_FIELD_LINE_COUNT = 'order_comment/field/line_count';
     public const XML_PATH_GENERAL_FIELD_MAX_LENGTH = 'order_comment/field/max_length';
 
-    private \Echron\OrderComment\Helper\Data $dataHelper;
-
-
     /**
      * Check if show order comment to customer account
      *
@@ -67,17 +64,20 @@ class Data extends AbstractHelper
      */
     public function getLineCount(): int
     {
-        return 1;
-        return (int)$this->scopeConfig->getValue(
+        $lineCount = $this->scopeConfig->getValue(
             self::XML_PATH_GENERAL_FIELD_LINE_COUNT,
             ScopeInterface::SCOPE_STORE
         );
+        if (empty($lineCount)) {
+            return 1;
+        }
+        return (int)$lineCount;
     }
 
     /**
      * Get max length
      *
-     * @return int
+     * @return int|null
      */
     public function getMaxLength(): int|null
     {

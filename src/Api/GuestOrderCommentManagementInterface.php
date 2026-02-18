@@ -15,10 +15,10 @@ interface GuestOrderCommentManagementInterface
     /**
      * @param string $cartId
      * @param OrderCommentInterface $orderComment
-     * @return \Magento\Checkout\Api\Data\PaymentDetailsInterface
+     * @return string|null
      */
     public function saveOrderComment(
-        $cartId,
+        string                $cartId,
         OrderCommentInterface $orderComment
-    );
+    ): string|null;
 }

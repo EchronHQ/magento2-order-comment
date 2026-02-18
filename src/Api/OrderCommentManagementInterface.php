@@ -13,12 +13,12 @@ use Echron\OrderComment\Api\Data\OrderCommentInterface;
 interface OrderCommentManagementInterface
 {
     /**
-     * @param int $cartId
+     * @param string $cartId
      * @param OrderCommentInterface $orderComment
      * @return null|string
      */
     public function saveOrderComment(
-        int                   $cartId,
+        string                $cartId,
         OrderCommentInterface $orderComment
-    ): string;
+    ): string|null;
 }

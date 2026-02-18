@@ -12,22 +12,15 @@ use Magento\Quote\Api\CartRepositoryInterface;
 
 class OrderCommentManagement implements OrderCommentManagementInterface
 {
-    /**
-     * Quote repository.
-     *
-     * @var \Magento\Quote\Api\CartRepositoryInterface
-     */
-    protected \Magento\Quote\Api\CartRepositoryInterface $quoteRepository;
 
     /**
      *
-     * @param \CartRepositoryInterface $quoteRepository
+     * @param CartRepositoryInterface $quoteRepository
      */
     public function __construct(
-        CartRepositoryInterface $quoteRepository
+        private CartRepositoryInterface $quoteRepository
     )
     {
-        $this->quoteRepository = $quoteRepository;
     }
 
     /**
@@ -35,9 +28,9 @@ class OrderCommentManagement implements OrderCommentManagementInterface
      *
      */
     public function saveOrderComment(
-        int                   $cartId,
+        string                $cartId,
         OrderCommentInterface $orderComment
-    ): string
+    ): string|null
     {
         $quote = $this->quoteRepository->getActive($cartId);
 

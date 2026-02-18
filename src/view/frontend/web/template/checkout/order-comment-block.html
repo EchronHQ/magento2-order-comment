@@ -1,38 +1,34 @@
 <!-- ko if: visible() -->
 <div class="order-comments-block comment field">
-    <form class="form order-comment-form">
-        <label class="label" for="order-comment" data-bind="text: fieldLabel"></label>
-        <div class="control">
-            <!-- ko if: isSingleLine -->
-            <input
-                    type="text"
-                    id="order-comment"
-                    class="input-text"
-                    name="order-comment"
-                    data-bind="
-                                attr: {
-                                    maxlength: maxLength,
-                                    placeholder: fieldPlaceholder
-                                }
-                            "/>
-            <!-- /ko -->
+    <label class="label" for="order-comment" data-bind="text: fieldLabel"></label>
+    <div class="control">
+        <!-- ko if: isSingleLine -->
+        <input
+                type="text"
+                id="order-comment"
+                class="input-text"
+                data-bind="
+                            value: comment,
+                            attr: {
+                                maxlength: maxLength,
+                                placeholder: fieldPlaceholder
+                            }
+                        "/>
+        <!-- /ko -->
 
-            <!-- ko ifnot: isSingleLine -->
-            <textarea
-                    id="order-comment"
-                    class="input-text order-comment"
-                    name="order-comment"
-                    data-bind="
-                                    attr: {
-                                        rows: lineCount,
-                                        maxlength: maxLength,
-                                        placeholder: fieldPlaceholder
-                                    }
-                                ">
-
-                        </textarea>
-            <!-- /ko -->
-        </div>
-    </form>
+        <!-- ko ifnot: isSingleLine -->
+        <textarea
+                id="order-comment"
+                class="input-text"
+                data-bind="
+                            value: comment,
+                            attr: {
+                                rows: lineCount,
+                                maxlength: maxLength,
+                                placeholder: fieldPlaceholder
+                            }
+                        "></textarea>
+        <!-- /ko -->
+    </div>
 </div>
 <!-- /ko -->
