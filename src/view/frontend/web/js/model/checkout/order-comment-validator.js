@@ -25,7 +25,7 @@ define(
                 var url;
 
                 if (isCustomer) {
-                    url = urlBuilder.createUrl('/carts/mine/set-order-comment', {})
+                    url = urlBuilder.createUrl('/carts/mine/set-order-comment', {});
                 } else {
                     url = urlBuilder.createUrl('/guest-carts/:cartId/set-order-comment', {cartId: quoteId});
                 }
@@ -50,16 +50,12 @@ define(
                     contentType: 'application/json',
                     type: 'PUT',
                     async: false
-                }).done(
-                    function (response) {
-                        result = true;
-                    }
-                ).fail(
-                    function (response) {
-                        result = false;
-                        errorProcessor.process(response);
-                    }
-                );
+                }).done(function (response) {
+                    result = true;
+                }).fail(function (response) {
+                    result = false;
+                    errorProcessor.process(response);
+                });
 
                 return result;
             }

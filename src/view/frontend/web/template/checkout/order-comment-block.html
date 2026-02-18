@@ -1,30 +1,28 @@
 <!-- ko if: visible() -->
-<div class="order-comments-block comment last">
+<div class="order-comments-block comment field">
     <form class="form order-comment-form">
-        <div>
-            <div class="field">
-                <label class="label" for="order-comment" data-bind="text: fieldLabel"></label>
-                <div class="control">
-                    <!-- ko if: isSingleLine -->
-                    <input
-                            type="text"
-                            id="order-comment"
-                            class="input-text"
-                            name="order-comment"
-                            data-bind="
+        <label class="label" for="order-comment" data-bind="text: fieldLabel"></label>
+        <div class="control">
+            <!-- ko if: isSingleLine -->
+            <input
+                    type="text"
+                    id="order-comment"
+                    class="input-text"
+                    name="order-comment"
+                    data-bind="
                                 attr: {
                                     maxlength: maxLength,
                                     placeholder: fieldPlaceholder
                                 }
                             "/>
-                    <!-- /ko -->
+            <!-- /ko -->
 
-                    <!-- ko ifnot: isSingleLine -->
-                    <textarea
-                            id="order-comment"
-                            class="input-text order-comment"
-                            name="order-comment"
-                            data-bind="
+            <!-- ko ifnot: isSingleLine -->
+            <textarea
+                    id="order-comment"
+                    class="input-text order-comment"
+                    name="order-comment"
+                    data-bind="
                                     attr: {
                                         rows: lineCount,
                                         maxlength: maxLength,
@@ -33,9 +31,7 @@
                                 ">
 
                         </textarea>
-                    <!-- /ko -->
-                </div>
-            </div>
+            <!-- /ko -->
         </div>
     </form>
 </div>
