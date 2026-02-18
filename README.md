@@ -22,13 +22,13 @@ php bin/magento setup:upgrade
 
 Go to **Stores > Configuration > Echron Extensions > Checkout Order Comment**.
 
-| Setting                          | Description                                                       |
-|----------------------------------|-------------------------------------------------------------------|
-| Show comment in customer account | Displays the comment on the order detail page in "My Account"     |
-| Field label                      | The label shown above the comment field                           |
-| Field placeholder                | Placeholder text inside the comment field                         |
-| Lines                            | Number of lines (1 renders a text input, more renders a textarea) |
-| Max length                       | Maximum number of characters allowed                              |
+| Setting                          | Description                                                       | Default                |
+|----------------------------------|-------------------------------------------------------------------|------------------------|
+| Show comment in customer account | Displays the comment on the order detail page in "My Account"     | True                   |
+| Field label                      | The label shown above the comment field                           | Order Comment          |
+| Field placeholder                | Placeholder text inside the comment field                         | Enter your comment ... |
+| Lines                            | Number of lines (1 renders a text input, more renders a textarea) | 1                      |
+| Max length                       | Maximum number of characters allowed, leave empty to set no limit | [empty]                |
 
 ## License ##
 

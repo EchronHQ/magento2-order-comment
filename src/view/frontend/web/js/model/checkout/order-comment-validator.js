@@ -4,9 +4,10 @@ define([
     'Magento_Checkout/js/model/url-builder',
     'mage/url',
     'Magento_Checkout/js/model/error-processor',
+    'Magento_Checkout/js/model/full-screen-loader',
     'jquery',
     'Echron_OrderComment/js/model/checkout/order-comment'
-], function (customer, quote, urlBuilder, urlFormatter, errorProcessor, $, orderComment) {
+], function (customer, quote, urlBuilder, urlFormatter, errorProcessor, fullScreenLoader, $, orderComment) {
     'use strict';
 
     return {
@@ -44,6 +45,7 @@ define([
 
             var result = false;
 
+            fullScreenLoader.startLoader();
             $.ajax({
                 url: urlFormatter.build(url),
                 type: 'PUT',
@@ -57,7 +59,7 @@ define([
                     errorProcessor.process(response);
                 }
             });
-
+            fullScreenLoader.stopLoader();
             return result;
         }
     };
