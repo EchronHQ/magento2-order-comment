@@ -4,15 +4,18 @@ define([
     'Magento_Checkout/js/model/url-builder',
     'mage/url',
     'Magento_Checkout/js/model/error-processor',
-    'Magento_Checkout/js/model/full-screen-loader',
-    'mage/storage',
+    'jquery',
     'Echron_OrderComment/js/model/checkout/order-comment'
-], function (customer, quote, urlBuilder, urlFormatter, errorProcessor, fullScreenLoader, storage, orderComment) {
+], function (customer, quote, urlBuilder, urlFormatter, errorProcessor, $, orderComment) {
     'use strict';
 
     return {
         /**
          * Save the order comment to the quote via REST API.
+         *
+         * Uses a synchronous XHR so the result is available before returning.
+         * The Magento additional-validators interface is synchronous and cannot
+         * handle a deferred/promise return value.
          *
          * @returns {Boolean}
          */
@@ -39,21 +42,20 @@ define([
                 }
             };
 
-            var result = true;
+            var result = false;
 
-            fullScreenLoader.startLoader();
-
-            storage.put(
-                urlFormatter.build(url),
-                JSON.stringify(payload),
-                false
-            ).done(function () {
-                result = true;
-            }).fail(function (response) {
-                result = false;
-                errorProcessor.process(response);
-            }).always(function () {
-                fullScreenLoader.stopLoader();
+            $.ajax({
+                url: urlFormatter.build(url),
+                type: 'PUT',
+                data: JSON.stringify(payload),
+                contentType: 'application/json',
+                async: false,
+                success: function () {
+                    result = true;
+                },
+                error: function (response) {
+                    errorProcessor.process(response);
+                }
             });
 
             return result;
