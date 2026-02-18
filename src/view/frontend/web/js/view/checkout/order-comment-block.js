@@ -4,8 +4,16 @@ define(['jquery', 'uiComponent'], function ($, Component) {
     console.log('order comment js loaded');
     return Component.extend({
         defaults: {
-            template: 'Echron_OrderComment/checkout/order-comment-block'
-        }, initialize: function () {
+            template: 'Echron_OrderComment/checkout/order-comment-block',
+            visible: true
+        },
+
+        initObservable: function () {
+            this._super().observe(['visible']);
+            return this;
+        },
+
+        initialize: function () {
             this._super();
 
             var config = window.checkoutConfig.orderComment;
