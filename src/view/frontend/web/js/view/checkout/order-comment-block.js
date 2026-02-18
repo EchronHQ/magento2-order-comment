@@ -1,7 +1,14 @@
-define(['jquery', 'uiComponent'], function ($, Component) {
+define([
+    'ko',
+    'uiComponent',
+    'Magento_Checkout/js/model/payment/additional-validators',
+    'Echron_OrderComment/js/model/checkout/order-comment-validator',
+    'Echron_OrderComment/js/model/checkout/order-comment'
+], function (ko, Component, additionalValidators, commentValidator, orderComment) {
     'use strict';
 
-    console.log('order comment js loaded');
+    additionalValidators.registerValidator(commentValidator);
+
     return Component.extend({
         defaults: {
             template: 'Echron_OrderComment/checkout/order-comment-block',
@@ -18,14 +25,12 @@ define(['jquery', 'uiComponent'], function ($, Component) {
 
             var config = window.checkoutConfig.orderComment;
 
-            console.log('comment config', config);
-
             this.lineCount = config.lineCount;
             this.maxLength = config.maxLength;
             this.fieldLabel = config.fieldLabel;
             this.fieldPlaceholder = config.fieldPlaceholder;
-
             this.isSingleLine = this.lineCount === 1;
+            this.comment = orderComment.comment;
 
             return this;
         }

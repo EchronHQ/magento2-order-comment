@@ -1,13 +1,14 @@
-define(
-    [
-        'jquery',
+define([
         'Magento_Customer/js/model/customer',
         'Magento_Checkout/js/model/quote',
         'Magento_Checkout/js/model/url-builder',
         'mage/url',
-        'Magento_Checkout/js/model/error-processor'
-    ],
-    function ($, customer, quote, urlBuilder, urlFormatter, errorProcessor) {
+        'Magento_Checkout/js/model/error-processor',
+        'Magento_Checkout/js/model/full-screen-loader',
+        'mage/storage',
+        'Magento_Checkout/js/model/business-order',
+        'Echron_OrderComment/js/model/checkout/order-comment'
+    ], function (customer, quote, urlBuilder, urlFormatter, errorProcessor, fullScreenLoader, storage, businessOrder, orderComment) {
         'use strict';
 
         return {
@@ -18,13 +19,17 @@ define(
              * @returns {Boolean}
              */
             validate: function () {
-                var isCustomer = customer.isLoggedIn();
-                var form = $('.payment-method input[name="payment[method]"]:checked').parents('.payment-method').find('form.order-comment-form');
+
+                var comment = orderComment.comment();
+
+                if (!comment) {
+                    return true;
+                }
 
                 var quoteId = quote.getQuoteId();
                 var url;
 
-                if (isCustomer) {
+                if (customer.isLoggedIn()) {
                     url = urlBuilder.createUrl('/carts/mine/set-order-comment', {});
                 } else {
                     url = urlBuilder.createUrl('/guest-carts/:cartId/set-order-comment', {cartId: quoteId});
@@ -33,28 +38,24 @@ define(
                 var payload = {
                     cartId: quoteId,
                     orderComment: {
-                        comment: form.find('.input-text.order-comment').val()
+                        comment: comment
                     }
                 };
-
-                if (!payload.orderComment.comment) {
-                    return true;
-                }
-
                 var result = true;
 
-                $.ajax({
-                    url: urlFormatter.build(url),
-                    data: JSON.stringify(payload),
-                    global: false,
-                    contentType: 'application/json',
-                    type: 'PUT',
-                    async: false
-                }).done(function (response) {
+                fullScreenLoader.startLoader();
+
+                storage.put(
+                    urlFormatter.build(url),
+                    JSON.stringify(payload),
+                    false
+                ).done(function () {
                     result = true;
                 }).fail(function (response) {
                     result = false;
                     errorProcessor.process(response);
+                }).always(function () {
+                    fullScreenLoader.stopLoader();
                 });
 
                 return result;
